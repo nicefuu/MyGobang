@@ -1,4 +1,4 @@
-package five_son_chess;
+package MyGobang;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +18,7 @@ public class mainFrame extends JFrame {
 	JPanel optionPane;
 	JSplitPane mainJSplitPane;
 	JOptionPane gameOver;
-	JButton[][] chessBoard = new JButton[19][19];//´´½¨18x18JButtonÊı×é
+	JButton[][] chessBoard = new JButton[19][19];//åˆ›å»º18x18JButtonæ•°ç»„
 	boolean BlackisPut[][]=new boolean[19][19];
 	boolean BlueisPut[][]=new boolean[19][19];
 	int lastrow=0;
@@ -29,27 +29,27 @@ public class mainFrame extends JFrame {
 	ImageIcon blue;
 	checkFive checkWin;
 	mainFrame(){	
-		this.setTitle("Îå×ÓÆå");
+		this.setTitle("äº”å­æ£‹");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Container mainContainer = this.getContentPane();//ÉèÖÃÖ÷ÈİÆ÷	
-		mainJSplitPane = new JSplitPane();//ĞÂ½¨·Ö¸îPane
+		Container mainContainer = this.getContentPane();//è®¾ç½®ä¸»å®¹å™¨	
+		mainJSplitPane = new JSplitPane();//æ–°å»ºåˆ†å‰²Pane
 		this.setSize(WIDTH+200,HEIGHT);
 		this.setResizable(false);
-		mainJSplitPane.setDividerSize(1);//ÉèÖÃ·Ö¸îÌõ¿í¶È
-		mainJSplitPane.setDividerLocation(700);//ÉèÖÃ·Ö¸îÌõÎ»ÖÃ
-		mainContainer.add(mainJSplitPane);//½²JSplitPaneÌí¼Óµ½Ö÷½çÃæ
-		chessPane = new JPanel();//ĞÂ½¨ÆåÅÌÈİÆ÷		
-		optionPane =new JPanel();//ĞÂ½¨ÓÒ·½ÈİÆ÷		
-		mainJSplitPane.setLeftComponent(chessPane);//Ìí¼ÓÆåÅÌÈİÆ÷
-		mainJSplitPane.setRightComponent(optionPane);//Ìí¼ÓÓÒ·½ÈİÆ÷
-		//ÉèÖÃÑ¡Ïî²¼¾Ö
+		mainJSplitPane.setDividerSize(1);//è®¾ç½®åˆ†å‰²æ¡å®½åº¦
+		mainJSplitPane.setDividerLocation(700);//è®¾ç½®åˆ†å‰²æ¡ä½ç½®
+		mainContainer.add(mainJSplitPane);//è®²JSplitPaneæ·»åŠ åˆ°ä¸»ç•Œé¢
+		chessPane = new JPanel();//æ–°å»ºæ£‹ç›˜å®¹å™¨		
+		optionPane =new JPanel();//æ–°å»ºå³æ–¹å®¹å™¨		
+		mainJSplitPane.setLeftComponent(chessPane);//æ·»åŠ æ£‹ç›˜å®¹å™¨
+		mainJSplitPane.setRightComponent(optionPane);//æ·»åŠ å³æ–¹å®¹å™¨
+		//è®¾ç½®é€‰é¡¹å¸ƒå±€
 		optionPane.setLayout(new GridLayout(18,1));
 		playing = new JLabel("",JLabel.CENTER);
 		whosTurn = new JLabel("",JLabel.CENTER);
 		whosTurn.setForeground(Color.blue);
 		emptyLabel = new JLabel("",JLabel.CENTER);
-		restartButton = new JButton("ÖØĞÂ¿ªÊ¼");
-		regretButton = new JButton("»ÚÆå");
+		restartButton = new JButton("é‡æ–°å¼€å§‹");
+		regretButton = new JButton("æ‚”æ£‹");
 		optionPane.add(playing);
 		optionPane.add(whosTurn);
 		optionPane.add(restartButton);
@@ -57,13 +57,13 @@ public class mainFrame extends JFrame {
 		optionPane.add(emptyLabel);
 		optionPane.add(emptyLabel);
 		optionPane.add(regretButton);
-		black=new ImageIcon("src/image/black_32x32.png");//ºÚ×ÓIcon
+		black=new ImageIcon("src/image/black_32x32.png");//é»‘å­Icon
 		blue =new ImageIcon("src/image/blue32x32.png");
-		//ÉèÖÃÆåÅÌ²¼¾Ö
-		chessPane.setLayout(new GridLayout(19,19));//´´½¨18x18²¼¾Ö	
+		//è®¾ç½®æ£‹ç›˜å¸ƒå±€
+		chessPane.setLayout(new GridLayout(19,19));//åˆ›å»º18x18å¸ƒå±€	
 		checkWin =new checkFive();
 		gameOver = new JOptionPane();
-		//ÆåÅÌ³õÊ¼»¯
+		//æ£‹ç›˜åˆå§‹åŒ–
 		for(int i=0;i<ROW;i++)
 		{
 			for(int j=0;j<COLUMN;j++)
@@ -73,14 +73,14 @@ public class mainFrame extends JFrame {
 				chessBoard[i][j]=new JButton();
 				chessBoard[i][j].setMargin(new Insets(1,1,1,1));
 				chessBoard[i][j].addActionListener(new simpleClickListener());
-				playing.setText("ÓÎÏ·ÕıÔÚ½øĞĞ");
-				whosTurn.setText("À¶×ÓµÄ»ØºÏ");
+				playing.setText("æ¸¸æˆæ­£åœ¨è¿›è¡Œ");
+				whosTurn.setText("è“å­çš„å›åˆ");
 				//chessBoard[i][j].setText(Integer.toString(i)+","+Integer.toString(j));
 				chessPane.add(chessBoard[i][j]);
 				
 			}
 		}
-		//ÉèÖÃÖØĞÂ¿ªÊ¼°´Å¥µÄÊôĞÔ
+		//è®¾ç½®é‡æ–°å¼€å§‹æŒ‰é’®çš„å±æ€§
 		restartButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -90,8 +90,8 @@ public class mainFrame extends JFrame {
 				{
 					for(int j=0;j<COLUMN;j++)
 					{
-						playing.setText("ÓÎÏ·ÕıÔÚ½øĞĞ");
-						whosTurn.setText("À¶×ÓµÄ»ØºÏ");
+						playing.setText("æ¸¸æˆæ­£åœ¨è¿›è¡Œ");
+						whosTurn.setText("è“å­çš„å›åˆ");
 						checkWin.restartSet();
 						BlackisPut[i][j]=false;
 						BlueisPut[i][j]=false;
@@ -101,7 +101,7 @@ public class mainFrame extends JFrame {
 					
 			}
 		});
-		//ÉèÖÃ»ÚÆå°´Å¥ÊôĞÔ
+		//è®¾ç½®æ‚”æ£‹æŒ‰é’®å±æ€§
 		regretButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -141,26 +141,26 @@ public class mainFrame extends JFrame {
 							{
 								chessBoard[i][j].setIcon(blue);
 								BlueisPut[i][j]=true;
-								whosTurn.setText("ºÚ×ÓµÄ»ØºÏ");
+								whosTurn.setText("é»‘å­çš„å›åˆ");
 							}
 							else if(chessNumber%2==1)
 							{
 								chessBoard[i][j].setIcon(black);
 								BlackisPut[i][j]=true;
-								whosTurn.setText("À¶×ÓµÄ»ØºÏ");
+								whosTurn.setText("è“å­çš„å›åˆ");
 							}
 							lastrow=i;
 							lastcolumn=j;
 							chessNumber++;
 							if(BlackisPut[lastrow][lastcolumn]&&checkWin.BlackisFive())
 							{
-								gameOver.showOptionDialog(null, "ºÚ×ÓWIN", "ÓÎÏ·½áÊø", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
+								gameOver.showOptionDialog(null, "é»‘å­WIN", "æ¸¸æˆç»“æŸ", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
 								//
 								restartButton.doClick();
 							}
 							else if(BlueisPut[lastrow][lastcolumn]&&checkWin.BlueisFive())
 							{
-								gameOver.showOptionDialog(null, "À¶×ÓWIN", "ÓÎÏ·½áÊø", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
+								gameOver.showOptionDialog(null, "è“å­WIN", "æ¸¸æˆç»“æŸ", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null,null,null);
 								restartButton.doClick();
 							}
 						}
@@ -202,7 +202,7 @@ public class mainFrame extends JFrame {
 		}
 		boolean BlackisFive()		
 		{
-			//ÏòÉÏ1
+			//å‘ä¸Š1
 			for(int i=0;i<4;i++)
 			{
 				if(lastrow>i)
@@ -214,55 +214,55 @@ public class mainFrame extends JFrame {
 					else break;
 				}
 			}
-			//×óÉÏ2
+			//å·¦ä¸Š2
 			for(int i=0;i<4;i++)
 			{
 				if(lastcolumn>i&&lastrow>i)
 				{
 					if(BlackisPut[lastrow-i-1][lastcolumn-i-1])
 					{
-						LeftUpChess++;//×óÉÏ
+						LeftUpChess++;//å·¦ä¸Š
 					}
 					else break;
 				}
 			}
-			//×ó3
+			//å·¦3
 			for(int i=0;i<4;i++)
 			{
 				if(lastcolumn>i)
 				{
 					if(BlackisPut[lastrow][lastcolumn-i-1])
 					{
-						LeftChess++;//×ó
+						LeftChess++;//å·¦
 					}
 					else break;
 				}
 			}
-			//×óÏÂ4
+			//å·¦ä¸‹4
 			for(int i=0;i<4;i++)
 			{
 				if(lastrow<18-i&&lastcolumn>i)
 				{
 					if(BlackisPut[lastrow+i+1][lastcolumn-i-1])
 					{
-						LeftDownChess++;//×ó
+						LeftDownChess++;//å·¦
 					}
 					else break;
 				}
 			}
-			//ÏÂ5
+			//ä¸‹5
 			for(int i=0;i<4;i++)
 			{
 				if(lastrow<18-i)
 				{
 					if(BlackisPut[lastrow+i+1][lastcolumn])
 					{
-						DownChess++;//×ó
+						DownChess++;//å·¦
 					}
 					else break;
 				}
 			}
-			//ÓÒÏÂ6
+			//å³ä¸‹6
 			for(int i=0;i<4;i++)
 			{
 				if(lastrow+i<18&&lastcolumn+i<18)
@@ -274,7 +274,7 @@ public class mainFrame extends JFrame {
 					else break;
 				}
 			}
-			//ÓÒ7
+			//å³7
 			for(int i=0;i<4;i++)
 			{
 				if(lastcolumn<18-i)
@@ -286,7 +286,7 @@ public class mainFrame extends JFrame {
 					else break;
 				}
 			}
-			//ÓÒÉÏ8
+			//å³ä¸Š8
 			for(int i=0;i<4;i++)
 			{
 				if(lastrow>i&&lastcolumn<18-i)
@@ -315,7 +315,7 @@ public class mainFrame extends JFrame {
 		}
 		boolean BlueisFive()
 		{
-			//ÏòÉÏ1
+			//å‘ä¸Š1
 			for(int i=0;i<4;i++)
 			{
 				if(lastrow>i)
@@ -327,55 +327,55 @@ public class mainFrame extends JFrame {
 					else break;
 				}
 			}
-			//×óÉÏ2
+			//å·¦ä¸Š2
 			for(int i=0;i<4;i++)
 			{
 				if(lastcolumn>i&&lastrow>i)
 				{
 					if(BlueisPut[lastrow-i-1][lastcolumn-i-1])
 					{
-						LeftUpChess++;//×óÉÏ
+						LeftUpChess++;//å·¦ä¸Š
 					}
 					else break;
 				}
 			}
-			//×ó3
+			//å·¦3
 			for(int i=0;i<4;i++)
 			{
 				if(lastcolumn>i)
 				{
 					if(BlueisPut[lastrow][lastcolumn-i-1])
 					{
-						LeftChess++;//×ó
+						LeftChess++;//å·¦
 					}
 					else break;
 				}
 			}
-			//×óÏÂ4
+			//å·¦ä¸‹4
 			for(int i=0;i<4;i++)
 			{
 				if(lastrow<18-i&&lastcolumn>i)
 				{
 					if(BlueisPut[lastrow+i+1][lastcolumn-i-1])
 					{
-						LeftDownChess++;//×ó
+						LeftDownChess++;//å·¦
 					}
 					else break;
 				}
 			}
-			//ÏÂ5
+			//ä¸‹5
 			for(int i=0;i<4;i++)
 			{
 				if(lastrow<18-i)
 				{
 					if(BlueisPut[lastrow+i+1][lastcolumn])
 					{
-						DownChess++;//×ó
+						DownChess++;//å·¦
 					}
 					else break;
 				}
 			}
-			//ÓÒÏÂ6
+			//å³ä¸‹6
 			for(int i=0;i<4;i++)
 			{
 				if(lastrow<18-i&&lastcolumn<18-i)
@@ -387,7 +387,7 @@ public class mainFrame extends JFrame {
 					else break;
 				}
 			}
-			//ÓÒ7
+			//å³7
 			for(int i=0;i<4;i++)
 			{
 				if(lastcolumn<18-i)
@@ -399,7 +399,7 @@ public class mainFrame extends JFrame {
 					else break;
 				}
 			}
-			//ÓÒÉÏ8
+			//å³ä¸Š8
 			for(int i=0;i<4;i++)
 			{
 				if(lastrow>i&&lastcolumn<18-i)
